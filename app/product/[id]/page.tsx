@@ -1,9 +1,30 @@
-import React from 'react'
 
-const page = () => {
+"use client"
+
+import axios from 'axios'
+import { useParams } from 'next/navigation'
+import React , {useEffect, useState} from 'react'
+
+
+const singleProduct = () => {
+
+  const [singleData, setSingleData] = useState<any>([]);
+
+  const {id} = useParams()
+  useEffect(() => {
+    axios(`https://dummyjson.com/products/${id}`)
+      .then(res => {
+        console.log(res.data);
+        setSingleData(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <div>page</div>
+    <div>{}</div>
   )
 }
 
-export default page
+export default singleProduct
