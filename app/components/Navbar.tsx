@@ -20,13 +20,13 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               strokeWidth={2}
               stroke="currentColor"
-              className="w-6 h-6"
-            >
+              className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
           </button>
         </div>
       </div>
+      
       {/* Mobile Navigation */}
       <div className="md:hidden flex flex-col space-y-4 mt-4 fixed">
         <Link href="/" className="block hover:text-gray-300 transition">HOME</Link>
@@ -38,4 +38,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar

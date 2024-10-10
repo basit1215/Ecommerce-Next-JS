@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <div className='w-[70vw] m-[auto] h-[80vh] mb-[1px]'>
