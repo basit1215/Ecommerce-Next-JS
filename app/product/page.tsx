@@ -1,8 +1,4 @@
-
-"use client"
-
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -20,11 +16,6 @@ interface Reviews {
   reviewerName: string;
 }
 
-// interface Tags {
-//   first: string;
-//   second: string;
-// }
-
 interface Product {
   availabilityStatus: string;
   brand: string;
@@ -41,45 +32,26 @@ interface Product {
   stock: number;
   warrantyInformation: string;
   weight: number;
-  dimensions: Dimensions;  // Changed to a single object
+  dimensions: Dimensions;
   reviews: Reviews[];
-  tags: string[]; // Changed to an array of strings
+  tags: string[]; 
 }
 
-const Products = () => {
-  const [productData, setProductData] = useState<Product[]>([]);
+const Products = async() => {
 
-  useEffect(() => {
-    axios('https://dummyjson.com/products')
-      .then(res => {
-        console.log(res.data.products);
-        setProductData(res.data.products);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
+    const data = await fetch('https://dummyjson.com/products')
+    const res = await data.json()  
+     console.log(res)
+    const products = await res.products
+    console.log(products)
+ 
 
   return (
     <>
       <h1 className="text-2xl font-bold text-center my-6">Hello World</h1>
-      {productData.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
-          {productData.map((item) => (
+          {products.map((item: Product) => (
             <div key={item.id} className="bg-white shadow-lg rounded-lg p-4">
-              {/* <h2 className="text-lg font-semibold mb-2">ID: {item.id}</h2>
-              <p className="text-gray-700 mb-1">Availability: {item.availabilityStatus}</p>
-              <p className="text-gray-700 mb-1">Brand: {item.brand}</p> */}
-              {/* <p className="text-gray-700 mb-1">Minimum Order: {item.minimumOrderQuantity}</p> */}
-              {/* <p className="text-gray-700 mb-1">Rating: {item.rating}</p> */}
-              {/* <p className="text-gray-700 mb-1">Return Policy: {item.returnPolicy}</p> */}
-              {/* <p className="text-gray-700 mb-1">Warranty: {item.warrantyInformation}</p>
-              <p className="text-gray-700 mb-1">Weight: {item.weight} kg</p> */}
-              {/* <p className="text-gray-700 mb-1">Description: {item.description}</p> */}
-
-
-
-              {/* <img src={item.thumbnail} alt={item.title} className="w-full h-32 object-cover rounded-md mb-4" /> */}
+             
               <Image src={item.thumbnail}
                 alt={item.title}
                 width={300}
@@ -91,11 +63,52 @@ const Products = () => {
               <p className="text-gray-700 mb-1">Category: {item.category}</p>
               <p className="text-gray-700 mb-1">Price: ${item.price}</p>
               <p className="text-gray-700 mb-1">Discount: {item.discountPercentage}%</p>
-              <button ><Link href={`products/${item.id}`}>Check Details</Link></button>
+              <button ><Link href={{
+                pathname: "singleProduct",
+                query:{
+                    title:                item.title,
+                    category:             item.category,
+                    price:                item.price,
+                    discountPercentage:   item.discountPercentage,
+                    thumbnail:            item.thumbnail,
+                    availabilityStatus:   item.availabilityStatus,
+                    brand:                item.brand,
+                    rating:               item.rating,
+                    id:                   item.id,
+                    returnPolicy:         item.returnPolicy,
+                    stock:                item.stock,
+                    warrantyInformation:  item.warrantyInformation,
+                    weight:               item.weight,
+                    minimumOrderQuantity: item.minimumOrderQuantity,
+                    dimensions:           JSON.stringify(item.dimensions),
+                    reviews:              JSON.stringify(item.reviews),
+                    tags:                 JSON.stringify(item.tags),
+                }
+              }}>Check Details</Link></button>
+            </div>
+          ))}
+       
+    </>
+  );
+}
+
+export default Products;
 
 
 
 
+
+
+{/* <h2 className="text-lg font-semibold mb-2">ID: {item.id}</h2>
+              <p className="text-gray-700 mb-1">Availability: {item.availabilityStatus}</p>
+              <p className="text-gray-700 mb-1">Brand: {item.brand}</p> */}
+              {/* <p className="text-gray-700 mb-1">Minimum Order: {item.minimumOrderQuantity}</p> */}
+              {/* <p className="text-gray-700 mb-1">Rating: {item.rating}</p> */}
+              {/* <p className="text-gray-700 mb-1">Return Policy: {item.returnPolicy}</p> */}
+              {/* <p className="text-gray-700 mb-1">Warranty: {item.warrantyInformation}</p>
+              <p className="text-gray-700 mb-1">Weight: {item.weight} kg</p> */}
+              {/* <p className="text-gray-700 mb-1">Description: {item.description}</p> */}
+              {/* <img src={item.thumbnail} alt={item.title} className="w-full h-32 object-cover rounded-md mb-4" /> */}
               {/* Reviews Section */}
               {/* <h3 className="text-md font-bold mt-4 mb-2">Reviews:</h3>
               <ul className="list-disc ml-5">
@@ -137,14 +150,3 @@ const Products = () => {
                   Depth: {item.dimensions.depth} cm, Height: {item.dimensions.height} cm, Width: {item.dimensions.width} cm
                 </li>
               </ul> */}
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p className="text-center text-lg">Loading...</p>
-      )}
-    </>
-  );
-}
-
-export default Products;
