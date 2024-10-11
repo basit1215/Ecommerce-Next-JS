@@ -8,11 +8,10 @@ export default function Navbar() {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-  };
-
+  }
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-orange-500 text-white p-4 z-50 shadow-xl">
+    <div className="fixed top-0 left-0 w-full bg-orange-500 text-white p-4 z-50 shadow-custom">
       <div className="flex justify-between items-center">
         <div className="flex items-center pl-3 sm:pl-5 md:pl-6 lg:pl-7 xl:pl-8 2xl:pl-10">
           <h1 className="text-xl font-bold tracking-wider">
@@ -30,8 +29,8 @@ export default function Navbar() {
           <Link href="/contact" className="transition-colors duration-300 hover:text-orange-100  text-base font-semibold">
             Contact
           </Link>
-          <Link href="/service" className="transition-colors duration-300 hover:text-orange-100  text-base font-semibold">
-            Service
+          <Link href="/product" className="transition-colors duration-300 hover:text-orange-100  text-base font-semibold">
+            Products
           </Link>
         </div>
   

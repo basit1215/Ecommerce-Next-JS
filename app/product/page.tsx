@@ -54,7 +54,6 @@ const Products = async () => {
 
     return (
         <>
-            <h1 className="text-2xl font-bold text-center my-6">Hello World</h1>
             {products.map((item: Product) => (
                 <div key={item.id} className="bg-white shadow-lg rounded-lg p-4">
 
