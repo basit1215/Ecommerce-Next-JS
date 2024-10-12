@@ -33,9 +33,9 @@ const singleProduct = ({ searchParams }: {
 
 
   return (
-    <div className='bg-orange-100'>
-      <div className="max-w-6xl mx-auto w-full p-6 pt-32 pb-28 ">
-        <div className="flex flex-col  lg:flex-row gap-8 border border-orange-300 bg-orange-50 px-10 py-8  rounded-lg shadow-xl">
+    <div className='bg-orange-200'>
+      <div className="max-w-6xl mx-auto w-full p-6 pt-32 pb-16 ">
+        <div className="flex flex-col  lg:flex-row gap-8 border border-orange-400 bg-orange-100 px-10 py-8  rounded-lg shadow-xl">
           {/* Left Side: Product Image */}
           <div className="flex-1">
             <Image
@@ -62,9 +62,9 @@ const singleProduct = ({ searchParams }: {
               </div>
             </div>
 
-         
 
-            <div className="space-y-2 pt-8 border-t border-gray-500">
+
+            <div className="space-y-2 pt-8 border-t border-gray-300">
               <h2 className="text-2xl text-orange-700 font-semibold">Description:</h2>
               <p className="text-gray-600 ">{searchParams.description}</p>
               <p className="text-black text-lg font-medium ">Rating: <span className='text-yellow-500'>{searchParams.rating} Stars</span></p>
@@ -75,27 +75,67 @@ const singleProduct = ({ searchParams }: {
           </div>
         </div>
 
-        <div className="mt-8 p-4 border border-orange-300 bg-orange-50 px-10 py-8  rounded-lg shadow-xl ">
+
+
+        <div className="flex  rounded-lg my-4 gap-3 ">
+          {/* Left Side: Product Details */}
+         
+            <div className=" pt-5 border  border-orange-400 bg-orange-100 px-10 pb-8  rounded-lg shadow-xl w-[720px]">
+              <h2 className="text-center text-3xl text-orange-700 font-semibold mb-12">Product Details</h2>
+              <p className="text-black py-3 border-gray-300 border-t">Availability: {searchParams.availabilityStatus}</p>
+              <p className="text-black border-t py-3 border-gray-300">Warranty: {searchParams.warrantyInformation}</p>
+              <p className="text-black border-t py-3 border-gray-300">Dimensions: {dimensions.height} x {dimensions.width} x {dimensions.depth} cm</p>
+              <p className="text-black border-t py-3 border-gray-300">Weight: {searchParams.weight} kg</p>
+              <p className="text-black border-t py-3 border-gray-300">Stock: {searchParams.stock}</p>
+              <p className="text-black border-t py-3 border-gray-300">Min Order: {searchParams.minimumOrderQuantity}</p>
+              <p className="text-black border-y py-3 border-gray-300">Return Policy: {searchParams.returnPolicy}</p>
+            </div>
+          
+
+          {/* Right Side: Reviews */}
+       
+            <div className=" pt-5 border w-[400px]  border-orange-400 bg-orange-100 px-10 pb-8  rounded-lg shadow-xl ">
+              <h2 className="text-center text-3xl text-orange-700 font-semibold mb-12">Reviews</h2>
+              <div className="mt-4">
+                {reviews.map((review: any, index: number) => (
+                  <div key={index} className="border-b border-gray-300 py-3">
+                    <p className="font-bold text-base">{review.reviewerName}</p>
+                    <p className="text-gray-600 text-[10px] mb-3">{review.reviewerEmail}</p>
+                    <p className='text-orange-600 text-lg font-bold italic text-center my-3 '>"{review.comment}"</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+        
+        </div>
+
+
+
+
+
+
+
+        {/* <div className="mt-8 p-4 border border-orange-300 bg-orange-50 px-10 py-8  rounded-lg shadow-xl ">
           <h2 className="text-center text-3xl text-orange-700 font-semibold mb-14">Product Details</h2>
           <p className="text-black   py-3">Availability: {searchParams.availabilityStatus}</p>
-      
+
           <p className="text-black border-t py-3 border-gray-400">Warranty: {searchParams.warrantyInformation}</p>
-         
+
           <p className="text-black border-t  py-3 border-gray-400">Dimensions: {dimensions.height} x {dimensions.width} x {dimensions.depth} cm</p>
-         
+
           <p className="text-black border-t  py-3 border-gray-400">Weight: {searchParams.weight} kg</p>
-       
+
           <p className="text-black border-t  py-3 border-gray-400">Stock: {searchParams.stock}</p>
-          
+
           <p className="text-black border-t  py-3 border-gray-400">Min Order: {searchParams.minimumOrderQuantity}</p>
-         
+
           <p className="text-black border-t  py-3 border-gray-400">Return Policy: {searchParams.returnPolicy}</p>
         </div>
 
-        <div className="mt-8 p-4  border border-orange-300 bg-orange-50 px-10 py-8  rounded-lg shadow-xl">
-          <h2  className="text-center text-3xl text-orange-700 font-semibold mb-14">Product Reviews</h2>
+
+        <div className="mt-8 p-4  border flex  border-orange-300 bg-orange-50 px-10  py-8  rounded-lg shadow-xl">
+          <h2 className="text-center text-3xl text-orange-700 font-semibold mb-14">Reviews</h2>
           <div className="mt-4">
-            <h3 className="text-xl font-semibold">Reviews:</h3>
             {reviews.map((review: any, index: number) => (
               <div key={index} className="border-b py-2">
                 <p className="font-bold">{review.reviewerName}</p>
@@ -105,7 +145,9 @@ const singleProduct = ({ searchParams }: {
               </div>
             ))}
           </div>
-        </div>
+
+        </div> */}
+
       </div>
     </div>
   );
