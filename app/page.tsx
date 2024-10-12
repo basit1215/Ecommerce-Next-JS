@@ -1,8 +1,127 @@
-export default function Home() {
-  return (
-    <div className='w-[70vw] m-[auto] h-[87.4vh] mb-[1px]'>
-      <h1 className='text-center text-5xl mt-[20px] pt-[80px] font-bold'>Home</h1>
-      <p className='mt-[50px] text-center text-black'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis, culpa totam placeat, nostrum unde laboriosam incidunt non iusto expedita, consequatur animi nesciunt ipsa magnam ea inventore. Aliquam totam itaque sit suscipit blanditiis est dignissimos nam quasi veritatis consequuntur soluta aspernatur enim tempora quo, modi iure, temporibus nemo? Maxime ea suscipit eos sunt, pariatur ullam nulla. Dignissimos temporibus doloribus ullam consectetur accusamus deserunt. Magnam eveniet iure quas hic, quisquam natus ipsa nesciunt! Unde ducimus sed facere velit assumenda odit, numquam, maiores quisquam ullam, libero exercitationem. Odit ut aperiam animi vel, dolores exercitationem totam esse nostrum minus, laborum tenetur quam sit porro facilis ad sed nemo et ea. Aliquam eum est dignissimos laudantium quo eveniet omnis veniam sed consequuntur, odio asperiores alias molestiae a culpa voluptatem quas optio porro. Ea reiciendis cum, cupiditate maxime et error officia assumenda earum mollitia placeat. Doloremque, quia vero! Amet quidem qui velit nam atque magnam ipsum impedit soluta laborum exercitationem? Delectus aliquam necessitatibus iusto similique et.</p>
-    </div>
-  );
+import React from 'react'
+import Image from 'next/image';
+import Link from 'next/link';
+import Head from 'next/head';
+
+interface Dimensions {
+
+  depth: number;
+  height: number;
+  width: number;
+
 }
+
+interface Reviews {
+
+  comment: string;
+  date: string;
+  rating: number;
+  reviewerEmail: string;
+  reviewerName: string;
+
+}
+
+interface Product {
+
+  availabilityStatus: string;
+  brand: string;
+  category: string;
+  description: string;
+  discountPercentage: number;
+  id: number;
+  minimumOrderQuantity: number;
+  returnPolicy: string;
+  price: number;
+  rating: number;
+  title: string;
+  thumbnail: string;
+  stock: number;
+  warrantyInformation: string;
+  weight: number;
+  dimensions: Dimensions;
+  reviews: Reviews[];
+  tags: string[];
+
+}
+
+const Products = async () => {
+
+  const data = await fetch('https://dummyjson.com/products')
+  const res = await data.json()
+  console.log(res)
+  const products = await res.products
+  console.log(products)
+
+  return (
+    <div className='bg-orange-200 pb-24'>
+     <Head>
+			<link rel='icon' href='/favicon.ico' />
+		</Head>
+      <div>
+        <h2 className='text-center text-orange-700 text-5xl mt-[20px] pt-[90px] font-bold'>Welcome to my Store!</h2>
+      </div>
+      <div className="flex flex-wrap justify-center gap-6 pt-16 ">
+        {products.map((item: Product) => (
+          <div
+            key={item.id}
+            className="bg-orange-100 shadow-lg rounded-lg p-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl"
+          >
+        
+            <Image
+              src={item.thumbnail}
+              alt={item.title}
+              width={300}
+              height={300}
+              priority={true}
+              className="w-full h-48 object-cover rounded-t-lg mb-4"
+            />
+
+            <div className="px-2 pt-5 pb-2 ">
+              <p className="text-gray-900 text-xl font-bold mb-3 mt-4">{item.title}</p>
+              <p className="text-gray-700 text-lg font-semibold mb-1">Price: ${item.price}</p>
+              <div className='mb-1 flex gap-2'>
+                <p>Discount:</p>
+                <p className='text-red-500  font-semibold'> {item.discountPercentage}%</p>
+              </div>
+              <div className='mb-1 flex gap-2'>
+                <p>Rating:</p>
+                <p className=' text-yellow-500 font-semibold'>{item.rating} Stars </p>
+              </div>
+              <button className="mt-4 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
+                <Link
+                  href={{
+                    pathname: "singleProduct",
+                    query: {
+                      title: item.title,
+                      category: item.category,
+                      price: item.price,
+                      discountPercentage: item.discountPercentage,
+                      thumbnail: item.thumbnail,
+                      availabilityStatus: item.availabilityStatus,
+                      brand: item.brand,
+                      description: item.description,
+                      rating: item.rating,
+                      id: item.id,
+                      returnPolicy: item.returnPolicy,
+                      stock: item.stock,
+                      warrantyInformation: item.warrantyInformation,
+                      weight: item.weight,
+                      minimumOrderQuantity: item.minimumOrderQuantity,
+                      dimensions: JSON.stringify(item.dimensions),
+                      reviews: JSON.stringify(item.reviews),
+                      tags: JSON.stringify(item.tags),
+                    },
+                  }}
+                >
+                  Check Details
+                </Link>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default Products

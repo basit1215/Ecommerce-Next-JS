@@ -29,9 +29,6 @@ export default function Navbar() {
           <Link href="/contact" className="transition-colors duration-300 hover:text-orange-100  text-base font-semibold">
             Contact
           </Link>
-          <Link href="/product" className="transition-colors duration-300 hover:text-orange-100  text-base font-semibold">
-            Products
-          </Link>
         </div>
   
         <button
@@ -73,92 +70,8 @@ export default function Navbar() {
           <Link href="/contact" className="block text-center transition-colors duration-300 hover:text-orange-100  text-lg font-semibold">
             Contact
           </Link>
-          <Link href="/service" className="block text-center transition-colors duration-300 hover:text-orange-100  text-lg font-semibold">
-            Service
-          </Link>
         </div>
       )}
     </div>
-  );
-  
-  
-
-  // return (
-  //   <div className="fixed top-0 left-0 w-full bg-black text-white p-4 z-50 shadow-lg">
-  //     <div className="flex justify-between items-end">
-  //       <div className='justify-center md:pl-6 lg:pl-7 xl:pl-8 2xl:pl-10 sm:pl-5 gap-6 pl-3 flex-grow items-end'>
-  //         <h1 className="text-2xl font-bold tracking-wide">
-  //           Store
-  //         </h1>
-  //       </div>
-
-  //       <div className="hidden md:flex justify-end gap-6 pr-10 flex-grow items-end">
-  //         <Link href="/" className="transition-colors duration-300 hover:text-gray-400 font-bold text-lg">
-  //           Home
-  //         </Link>
-  //         <Link href="/about" className="transition-colors duration-300 hover:text-gray-400 font-bold text-lg">
-  //           About
-  //         </Link>
-  //         <Link href="/contact" className="transition-colors duration-300 hover:text-gray-400 font-bold text-lg">
-  //           Contact
-  //         </Link>
-  //         <Link href="/service" className="transition-colors duration-300 hover:text-gray-400 font-bold text-lg">
-  //           Service
-  //         </Link>
-  //       </div>
-
-  //       <button
-  //         className="md:hidden bg-blue-500 text-white py-2 px-4 rounded-lg transition-transform transform hover:scale-105 shadow-lg font-bold z-50"
-  //         onClick={toggleMenu}
-  //       >
-  //         {isOpen ? (
-  //           <svg
-  //             aria-hidden="true"
-  //             height="16"
-  //             viewBox="0 0 16 16"
-  //             version="1.1"
-  //             width="16"
-  //             className="text-white"
-  //           >
-
-  //             <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
-  //           </svg>
-  //         ) : (
-  //           <svg
-  //             aria-hidden="true"
-  //             height="16"
-  //             viewBox="0 0 16 16"
-  //             version="1.1"
-  //             width="16"
-  //             className="text-white"
-  //           >
-
-  //             <path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"></path>
-  //           </svg>
-  //         )}
-  //       </button>
-
-
-  //     </div>
-
-
-  //     {isOpen && (
-  //       <div className="md:hidden flex flex-col mt-2 space-y-2 items-center">
-  //         <Link href="/" className="transition-colors duration-300 hover:text-gray-400 font-bold text-lg">
-  //           Home
-  //         </Link>
-  //         <Link href="/about" className="transition-colors duration-300 hover:text-gray-400 font-bold text-lg">
-  //           About
-  //         </Link>
-  //         <Link href="/contact" className="transition-colors duration-300 hover:text-gray-400 font-bold text-lg">
-  //           Contact
-  //         </Link>
-  //         <Link href="/service" className="transition-colors duration-300 hover:text-gray-400 font-bold text-lg">
-  //           Service
-  //         </Link>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
-
+  )
 }
