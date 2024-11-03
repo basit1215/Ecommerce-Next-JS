@@ -54,19 +54,22 @@ const Products = async () => {
 
   return (
     <div className='bg-orange-200 pb-24'>
-     <Head>
-			<link rel='icon' href='/favicon.ico' />
-		</Head>
+
+      <Head>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+
       <div>
         <h2 className='text-center text-orange-700 text-5xl mt-[20px] pt-[90px] font-bold'>Welcome to my Store!</h2>
       </div>
+
       <div className="flex flex-wrap justify-center gap-6 pt-16 ">
         {products.map((item: Product) => (
           <div
             key={item.id}
             className="bg-orange-100 shadow-lg rounded-lg p-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl"
           >
-        
+
             <Image
               src={item.thumbnail}
               alt={item.title}
@@ -120,6 +123,7 @@ const Products = async () => {
           </div>
         ))}
       </div>
+      
     </div>
   )
 }
